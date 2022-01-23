@@ -1,0 +1,88 @@
+
+<app-card *ngIf="weather !== null">
+
+    <p header>Weather</p>
+
+    <div content *ngIf="!loading &&  weather !== undefined">
+        <!-- General: Type of weather and current temperature, date and time, location -->
+
+        <div class="flex items-center">
+            <img class=" h-24 mr-2" [src]="weather.weather[0].icon">
+            <p class="text-5xl mr-3">{{ weather.main.temp }} &#176;C</p>
+            <div class="flex-grow">
+                <p>{{ weather.weather[0].description }}</p>
+                <p>{{ weather.name }} - {{ weather.sys.country }}</p>
+            </div>
+        </div>
+
+
+        <div class="grid gap-4 grid-cols-1 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
+
+            <!-- Teperature Information -->
+            <div class="shadow-sm border p-2 rounded-sm text-slate-600 bg-slate-50">
+                <div class="pb-1 mb-2 border-b border-slate-300 flex items-center">
+                    <span class="material-icons fill-slate-600">thermostat</span>
+                    <p class="text-base font-bold flex-grow ml-2">Temperature</p>
+                </div>
+
+                <p class="grid grid-cols-2 gap-2"><strong>Current:</strong> {{weather.main.temp}} &#176;C</p>
+                <p class="grid grid-cols-2 gap-2"><strong>Feels Like:</strong> {{weather.main.feels_like}} &#176;C</p>
+                <p class="grid grid-cols-2 gap-2"><strong>Min:</strong> {{weather.main.temp_min}} &#176;C</p>
+                <p class="grid grid-cols-2 gap-2"><strong>Max:</strong> {{weather.main.temp_max}} &#176;C</p>
+
+            </div>
+
+
+            <!-- Wind Information -->
+            <div class="shadow-sm border p-2 rounded-sm text-slate-600 bg-slate-50">
+                <div class="pb-1 mb-2 border-b border-slate-300 flex items-center">
+                    <span class="material-icons fill-slate-600">air</span>
+                    <p class="text-base font-bold flex-grow ml-2">Wind</p>
+                </div>
+
+                <p class="grid grid-cols-2 gap-2"><strong>Wind Speed:</strong> {{weather.wind.speed}}</p>
+                <p class="grid grid-cols-2 gap-2"><strong>Gust Speed:</strong> {{weather.wind.gust}}</p>
+                <p class="grid grid-cols-2 gap-2"><strong>Direction:</strong> {{weather.wind.deg}} &#176;</p>
+            </div>
+
+
+            <!-- Location Information -->
+            <div class="shadow-sm border p-2 rounded-sm text-slate-600 bg-slate-50">
+                <div class="pb-1 mb-2 border-b border-slate-300 flex items-center">
+                    <span class="material-icons fill-slate-600">my_location</span>
+                    <p class="text-base font-bold flex-grow ml-2">Location</p>
+                </div>
+
+                <p class="grid grid-cols-2 gap-2"><strong>Sunrise:</strong> {{weather.getSunrise()}}</p>
+                <p class="grid grid-cols-2 gap-2"><strong>Sunset:</strong> {{weather.getSunset()}}</p>
+                <p class="grid grid-cols-2 gap-2"><strong>Timezone:</strong> {{weather.getTimeZone()}}</p>
+
+            </div>
+
+
+            <!-- Miscelaneous Information -->
+            <div class="shadow-sm border p-2 rounded-sm text-slate-600 bg-slate-50">
+                <div class="pb-1 mb-2 border-b border-slate-300 flex items-center">
+                    <span class="material-icons fill-slate-600">stacked_bar_chart</span>
+                    <p class="text-base font-bold flex-grow ml-2">Miscelaneous</p>
+                </div>
+
+                <p class="grid grid-cols-2 gap-2"><strong>Humidity:</strong> {{weather.main.humidity}} %</p>
+                <p class="grid grid-cols-2 gap-2"><strong>Pressure:</strong> {{weather.main.pressure}} hPa</p>
+                <p class="grid grid-cols-2 gap-2"><strong>Cloud Cover:</strong> {{weather.clouds.all}} %</p>
+                <p class="grid grid-cols-2 gap-2"><strong>Visibility:</strong> {{weather.visibility}}</p>
+
+            </div>
+        </div>
+
+        <div class="mt-2 flex">
+            <div class="flex-grow"></div>
+            <p class="text-sm">{{ weather.getDate() }}</p>
+        </div>
+    </div>
+
+    <div content *ngIf="loading">
+        <app-loader [message]="'Loading Weather'"></app-loader>
+    </div>
+
+</app-card>

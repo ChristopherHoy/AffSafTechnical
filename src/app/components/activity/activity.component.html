@@ -1,0 +1,15 @@
+<app-card>
+    <p header>Activity</p>
+    <div content>
+        <div *ngIf="!loading && activity !== undefined" class="text-slate-600">
+            <p class="text-2xl mb-2">{{activity.activity}}</p>
+
+            <div class="border shadow-sm bg-slate-50 p-2">
+                <div class="grid gap-1 grid-cols-3"><strong>Type:</strong><p class="col-span-2">{{activity.type}}</p></div>
+                <div class="grid gap-1 grid-cols-3"><strong>Accessibility:</strong><p class="col-span-2">{{activity.accessibility}}</p></div>
+                <div class="grid gap-1 grid-cols-3"><strong>Participants:</strong><p class="col-span-2">{{activity.participants}}</p></div>
+            </div>
+        </div>
+        <app-loader *ngIf="loading" [message]="'Loading Activity'"></app-loader>
+    </div>
+</app-card>

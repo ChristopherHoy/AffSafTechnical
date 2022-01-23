@@ -1,0 +1,40 @@
+
+<div class="py-3 px-8 bg-slate-200 h-screen">
+
+    <!-- Form -->
+    <app-card>
+        <p header> Select the destination:</p>
+        <div content class="grid gap-4 grid-cols-4 sm:w-8/12 md:w-6/12 lg:w-5/12 p-2 items-center">
+            <label>Latitude</label>
+            <input type="text" name="latitude" [(ngModel)]="latitude" class="px-2 h-8 border-slate-300 border col-span-3 rounded-md outline-none focus:ring-2 focus:ring-blue-200">
+
+            <label>Longitude</label>
+            <input type="text" name="longitude" [(ngModel)]="longitude"  class="px-2 h-8 border-slate-300 border col-span-3 rounded-md outline-none focus:ring-2 focus:ring-blue-200">
+
+            <label>Number of friends</label>
+            <input type="number" name="latitude" [(ngModel)]="numFriends" class="px-2 h-8 border-slate-300 border col-span-3 rounded-md outline-none focus:ring-2 focus:ring-blue-200">
+
+            <div class="flex col-span-4">
+                <div class="flex-grow"></div>
+                <button (click)="onSubmit()" class="bg-green-500 text-white rounded-md px-2 py-1">Submit</button>
+            </div>
+        </div>
+
+    </app-card>
+
+    <!-- Activity -->
+    <div class="my-4">
+        <app-activity *ngIf="activity !== undefined || isLoadingActivity" [activity]="activity" [loading]="isLoadingActivity"></app-activity>
+    </div>
+
+    <!-- Weather -->
+    <div class="my-4">
+        <app-weather *ngIf="weather !== undefined || isLoadingWeather" [weather]="weather" [loading]="isLoadingWeather"></app-weather>
+    </div>
+
+    <!-- Friends -->
+    <div class="my-4">
+        <app-friends *ngIf="friends !== undefined || isLoadingFriends" [friends]="friends" [loading]="isLoadingFriends"></app-friends>
+    </div>
+
+</div>
